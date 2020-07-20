@@ -1,8 +1,6 @@
-{:title "About"
+{:title "About this blog"
  :layout :page
- :page-index 0
- :navbar? true}
+ :page-index 1}
 
-## Write something about something
-
-wow wow wow
+this is another custom page
+totally not a post
