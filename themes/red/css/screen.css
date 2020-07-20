@@ -7,6 +7,12 @@ h6 {
   font-family: 'Alegreya';
 }
 
+h3.subtitle {
+  font-weight: normal;
+  font-size: 120%;
+  font-style: italic;
+}
+
 body {
   color: #333;
   background-color: #f2f2f2;
