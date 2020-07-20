@@ -131,16 +131,6 @@ pre code {
   white-space: pre;
 }
 
-code {
-  color: #428bca;
-}
-
-pre,
-code,
-.hljs {
-  background-color: #f7f9fd;
-}
-
 @media (min-width: 768px) {
   .navbar {
     min-height: 70px;
