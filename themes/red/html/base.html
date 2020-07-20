@@ -68,7 +68,7 @@
               class="active"
               {% endifequal %}
             >
-              <a href="{{nav-page.uri}}">{{nav-page.title}}</a>
+            <a href="{{nav-page.uri}}">{% firstof nav-page.nav-title nav-page.title %}</a>
             </li>
             {% endfor %}
             <li><a href="{{rss-uri}}">RSS</a></li>
@@ -93,10 +93,10 @@
             <h3>Links</h3>
             <ul id="links">
               <li>
-                <a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a>
+                <a href="https://github.com/svdo">Stefan's GitHub</a>
               </li>
               <li>
-                <a href="https://carmen.la/blog/archives/">Carmen's Blog</a>
+                <a href="https://twitter.com/stefanvdoord">Stefan's Twitter</a>
               </li>
               {% for page in sidebar-pages %}
               <li><a href="{{page.uri}}">{{page.title}}</a></li>
