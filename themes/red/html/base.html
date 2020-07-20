@@ -64,14 +64,9 @@
             </li>
             {% for nav-page in navbar-pages %}
             <li
-              {%ifequal
-              page.uri
-              nav-page.uri
-              %}
+              {% ifequal page.uri nav-page.uri %}
               class="active"
-              {%
-              endifequal
-              %}
+              {% endifequal %}
             >
               <a href="{{nav-page.uri}}">{{nav-page.title}}</a>
             </li>
@@ -87,9 +82,10 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
-          <div id="content">
-            {% block content %} {% endblock %}
-          </div>
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
 
         <div class="col-md-3">
@@ -137,10 +133,8 @@
     </div>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script>
-      hljs.initHighlightingOnLoad()
-    </script>
-    {% if post.klipse %} {{post.klipse|safe}} {% endif %} {% if page.klipse %}
-    {{page.klipse|safe}} {% endif %}
+    <script>hljs.initHighlightingOnLoad();</script>
+    {% if post.klipse %} {{post.klipse|safe}} {% endif %}
+    {% if page.klipse %} {{page.klipse|safe}} {% endif %}
   </body>
 </html>
