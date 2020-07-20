@@ -29,39 +29,39 @@ body {
 }
 
 .navbar-default {
-  background-color: #428bca;
+  background-color: #9d2d25;
   border: none;
 }
 
 .navbar-default .navbar-brand {
-  color: #fff;
+  color: #fffbf0;
   font-family: 'Alegreya';
 }
 
 .navbar-default .navbar-brand:hover {
-  color: #fff;
+  color: #fffbf0;
 }
 
 .navbar-default .navbar-nav li a {
-  color: #fff;
+  color: #fffbf0;
 }
 
 .navbar-default .navbar-nav li a:hover {
-  color: #fff;
-  background-color: #3d80ba;
+  color: #fffbf0;
+  background-color: #d45442;
 }
 
 .navbar-default .navbar-nav .active a {
-  color: #fff;
-  background-color: #3d80ba;
+  color: #fffbf0;
+  background-color: #d45442;
 }
 
 .navbar-default .navbar-toggle:hover {
-  background-color: #3d80ba;
+  background-color: #d45442;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #fff;
+  background-color: #fffbf0;
 }
 
 #sidebar {
@@ -130,6 +130,16 @@ pre code {
   padding: 0.5em;
   overflow-wrap: normal;
   white-space: pre;
+}
+
+a,
+a:link,
+a:visited {
+  color: #9d2d25;
+}
+a:hover,
+a:active {
+  color: #d45442;
 }
 
 @media (min-width: 768px) {
