@@ -174,3 +174,9 @@ a:active {
     text-align: left;
   }
 }
+
+@media print {
+  #sidebar {
+    display: none;
+  }
+}
