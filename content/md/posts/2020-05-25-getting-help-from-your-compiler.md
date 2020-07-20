@@ -2,7 +2,9 @@
  :subtitle "Using clever data types to reduce the possibilities for mistakes"
  :layout :post
  :tags  ["functional", "typescript", "either", "validation", "react"]
- :toc true}
+ :toc true
+ :author "Stefan"
+ :date "2020-05-25"}
 
 *I'm learning about functional programming. I'm having loads of fun doing that,
 and I also think my code is improving because of it. In this post I want to
