@@ -148,6 +148,18 @@ a:active {
   color: #d45442;
 }
 
+.tag {
+  background-color: #888;
+  color: #fffbf0;
+  font-size: 60%;
+  padding: 3px 7px;
+  border-radius: 10px;
+}
+.tag a, .tag a:link, .tag a:visited { color: #fffbf0; }
+.tag a:hover, .tag a:active { color: #fffbf0; }
+
+#content li { padding-left: 0.6em; }
+
 @media (min-width: 768px) {
   .navbar {
     min-height: 70px;
