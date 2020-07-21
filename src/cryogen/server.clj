@@ -1,5 +1,5 @@
 (ns cryogen.server
-  (:require 
+  (:require
    [clojure.string :as string]
    [compojure.core :refer [GET defroutes]]
    [compojure.route :as route]
@@ -13,7 +13,10 @@
 
 (defn init []
   (load-plugins)
-  (compile-assets-timed)
+  (compile-assets-timed
+   {:extend-params-fn
+    (fn extend-params [params site-data]
+      (assoc params :posts-count (count (:posts site-data))))})
   (let [ignored-files (-> (resolve-config) :ignored-files)]
     (start-watcher! "content" ignored-files compile-assets-timed)
     (start-watcher! "themes" ignored-files compile-assets-timed)))
