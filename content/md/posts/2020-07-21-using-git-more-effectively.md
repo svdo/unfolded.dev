@@ -10,10 +10,11 @@
 people. Some are professional software developers, like myself. Others are for
 example researchers, scientist. They typically also write software, but not as
 their main activity. Also, they have no formal training as software developers.
-In this series of blog posts I will explain the best practices that we use as
-professional software developers, so that others may be able to benefit from it.
-So that writing software hopefully takes them less effort and gives them more
-pleasure.*
+In [this series of blog
+posts](/pages/software-development-easy-to-learn-hard-to-master/) I will explain
+the best practices that we use as professional software developers, so that
+others may be able to benefit from it. So that writing software hopefully takes
+them less effort and gives them more pleasure.*
 
 ## A Creative Pursuit
 
