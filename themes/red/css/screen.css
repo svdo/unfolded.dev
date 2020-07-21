@@ -164,6 +164,10 @@ a:active {
 .footnotes {
     font-size: 12pt;
 }
+.footnotes p {
+    margin: 0;
+}
+
 @media (min-width: 768px) {
   .navbar {
     min-height: 70px;
