@@ -1,5 +1,6 @@
 {:title "Using Git as a Logbook to Improve Efficiency"
  :subtitle "Software Development: Easy To Learn, Hard To Master"
+ :description "Using your version control system as a logbook can help your future self, your team mates, and your successors. This post gives some guidance and best practices."
  :layout :post
  :tags  ["git", "version control", "xp"]
  :toc true
