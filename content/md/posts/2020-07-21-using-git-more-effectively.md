@@ -1,4 +1,4 @@
-{:title "Using Git (more) Effectively"
+{:title "Using Git as a Logbook to Improve Efficiency"
  :subtitle "Software Development: Easy To Learn, Hard To Master"
  :layout :post
  :tags  ["git", "version control", "xp"]
@@ -9,8 +9,8 @@
 *In my daily work, I have the good fortune to work with many very talented
 people. Some are professional software developers, like myself. Others are for
 example researchers, scientist. They typically also write software, but not as
-their main activity. Also, they have no formal training as software developers.
-In [this series of blog
+their main activity. Also, they often have no formal training as software
+developers. In [this series of blog
 posts](/pages/software-development-easy-to-learn-hard-to-master/) I will explain
 the best practices that we use as professional software developers, so that
 others may be able to benefit from it. So that writing software hopefully takes
@@ -19,7 +19,7 @@ them less effort and gives them more pleasure.*
 ## A Creative Pursuit
 
 A decade or so ago, I had the good fortune to work with a group of extremely
-smart scientists. Without going into details, their job was to conceive of
+smart scientists. Without going into details, their job was to conceive
 algorithms for image processing, and improve them. They had huge volumes of
 data, and the ability to create more. The algorithms had to be robust in the
 face of all kinds of variations in that data. Much like software development,
@@ -61,11 +61,11 @@ going to tell you a bit about how I use it.
 
 ## A Logbook On Steroids
 
-For me, my version control system (e.g. git) is like a logbook. I use it to
-record relevant things about my work that are not part of the code itself. For
-example, in a commit message I type the reason why I'm doing things a certain
-way. Or I might record that I tried something but it failed. Let's go into some
-details to better explain.
+My version control system (e.g. git) is like a logbook. I use it to record
+relevant things about my work that are not part of the code itself. For example,
+in a commit message I type the reason why I'm doing things a certain way. Or I
+might record that I tried something but it failed. Let's go into some details to
+better explain.
 
 ### Target Audience
 
@@ -94,10 +94,10 @@ answer is:
 ### Tell A Story
 
 Well, maybe that's a bit overdoing it. My kids are going to be bored out of
-their socks by these stories. But still, I do try commit in such a way that the
-sequence of all commit messages can be understood by others. They say more then
-the individual commits in isolation, because the succession of commits allows
-you to distill my reasoning, from where to where I'm going.
+their socks by these stories. But still, I do try to commit in such a way that
+the sequence of all commit messages can be understood by others. They say more
+than the individual commits in isolation, because the succession of commits
+allows you to distill my reasoning, from where to where I'm going.
 
 ### Record Frequently
 
@@ -111,20 +111,21 @@ commit for a few hours. That's ok, but it should be exceptional, not the norm.
 Committing frequently also means that I make separate commits when reasonably
 possible. For example, as I'm writing this blog post, I'm making a few changes
 to the CSS style sheet. I could commit those as part of the blog post, or as a
-separate commit. Instead, I chose to create [three][commit1]&#32;[separate][commit2]&#32;[commits][commit3] because each makes sense on its own, without the other two.
-This way I can later revert any of the three changes by simply reverting the
-corresponding commit. Of course some people find this rather extreme[^xp], and
-that's fine. YMMV.
+separate commit. Instead, I chose to create
+[three][commit1]&#32;[separate][commit2]&#32;[commits][commit3] because each
+makes sense on its own, without the other two. This way I can later revert any
+of the three changes by simply reverting the corresponding commit. Of course
+some people find this rather extreme[^xp], and that's fine. YMMV.
 
 ### Rewrite
 
 And like any good story, also this one needs to be polished and rewritten to be
 as good as it can be. I do that all the time. When I'm working on a feature, I
-may for example have ten commits that form a logical whole. But I notice that
-there was a change that should have been part of one of those commits, but I
-overlooked it at that time. So I make a new commit with that single thing that I
-forgot, I move that new "fixup" commit to the commit where it belongs, and I
-combine it with that one. I look at the commit messages and edit them if needed.
+may for example have ten commits that form a logical whole. Then I notice
+that there was a change that should have been part of one of those commits, but
+I overlooked it at that time. So I make a new commit with that single thing that
+I forgot, I move that new "fixup" commit to the commit where it belongs, and I
+combine the two. I look at the commit messages and edit them if needed.
 I reorder commits. And then, when I'm satisfied, only then I push my commits to
 the remote, so that others will only see the polished version of my story.
 Obviously having a great git client tremendously helps with this. I can't
@@ -152,19 +153,19 @@ themselves as well.
 In closing, I want to say a few words about *when* I use a version control
 system. The answer may surprise you, because it is: "almost always". Yesterday
 and today, I was trying out a few different crypto libraries for some finite
-field arithmetic that I need to do. So I created a few small projects to quickly
-try a few libraries. And for each of those, I created a git repo. Just on my own
-computer, mind you. Unless I end up creating a spike that I think has value to
-others, I won't create a remote for these repos. But just typing `git init`
-after creating a new project doesn't cost me anything. WHen I don't need it
-anymore, I remove the project, and the embedded `.git` folder with the history
-is automatically deleted as well. So why not?
+field arithmetic that I needed to do. So I created a few small projects to
+quickly try a few libraries. And for each of those, I created a git repo. Just
+on my own computer, mind you. Unless I end up creating a spike that I think has
+value to others, I won't create a remote for these repos. But just typing `git
+init` after creating a new project doesn't cost me anything. When I don't need
+it anymore, I remove the project, and the embedded `.git` folder with the
+history is automatically deleted as well. So why not?
 
 Like Woody Zuill says it: "turn up the good!" If using a version control system
 like git is good, turn it up. Use it more than you used to, and then more still,
 and see what happens. If committing to git is good, turn it up. Commit more
-frequently, and then more frequently still. Maybe you'll surprise yourself. I
-hope it will bring you the satisfaction is has given me!
+frequently, and then more frequently still. Maybe you'll be surprised. I hope it
+will bring you the satisfaction it has given me!
 
 <div style="text-align: center; font-size: 3em;">🤠</div>
 
