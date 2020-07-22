@@ -1,6 +1,18 @@
-{:title "About Unfolded"
+{:title "Stefan van den Oord"
  :layout :page
- :page-index 1}
+ :navbar? true
+ :nav-title "About"
+ :page-index 0}
+
+I love software development. I’m a generalist and I like learning new things all
+the time. I particularly enjoy functional programming, because I believe it can
+reduce the complexity of code. And also extreme programming, including practices
+like pair programming and test-driven design. I also enjoy teaching others about
+it, for example at conferences, or using coding dojos.
+
+<p style="text-align: center"><img src="/img/stefan.jpg" /></p>
+
+## About My Blog
 
 I decided it's part for my own little place out there. I like to write a blog
 post now and then, and I like it to be accessible. I also like it to be
