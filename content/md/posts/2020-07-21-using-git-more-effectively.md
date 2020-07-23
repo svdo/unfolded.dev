@@ -9,13 +9,13 @@
 
 *In my daily work, I have the good fortune to work with many very talented
 people. Some are professional software developers, like myself. Others are for
-example researchers, scientist. They typically also write software, but not as
-their main activity. Also, they often have no formal training as software
-developers. In [this series of blog
+example researchers, scientist, project leaders, and so on. Is that you? Do you
+also write software, but not as your main activity? Do you have some experience
+but maybe no formal training? In [this series of blog
 posts](/pages/software-development-easy-to-learn-hard-to-master/) I will explain
-the best practices that we use as professional software developers, so that
-others may be able to benefit from it. So that writing software hopefully takes
-them less effort and gives them more pleasure.*
+the best practices that I use, so that you may be able to benefit from them. So
+that writing software hopefully takes you less effort and gives you more
+pleasure.*
 
 ## A Creative Pursuit
 
@@ -52,11 +52,11 @@ the sense that they are both creative pursuits. Also software development
 requires a good amount of trial-and-error, backtracking, rethinking, trying
 again, going back to something that wasn't so stupid after all. The difference
 is that we, software developers, are lazy to the point that we try to automate
-just about anything that we can. So also for this we use tools. And yes,
-nowadays probably everybody understands that I'm going to say "git" (or
-"mercurial" or something similar)[^vcs-history]. So I'm not going to explain
-what git is here. Plenty of good resources out there on that topic. No, I'm
-going to tell you a bit about how I use it.
+just about anything that we can. So we use tools. And yes, nowadays probably
+everybody understands that I'm going to say "git" (or "mercurial" or something
+similar)[^vcs-history]. So I'm not going to explain what git is here. Plenty of
+good resources out there on that topic. No, I'm going to tell you a bit about
+how I use it.
 
 <div style="text-align: center; font-size: 3em;">🛠</div>
 
@@ -85,8 +85,8 @@ answer is:
    time. By documenting them, I allow my team mates to step into my shoes and
    follow my reasoning.
 3. Successors or other people who may have to work on the code when I'm not
-   around. Even though the average "best before" period of software is a fair
-   bit shorter than people prefer to believe, it still happens that I write code
+   around. Even though the average "best before" date of software is a fair
+   bit closer than people prefer to believe, it still happens that I write code
    that others need to continue working on when I'm not available, for example
    because I'm in a different department or working for a different employer.
    Again, by documenting things I try to enable them to decide what pieces are
@@ -120,7 +120,7 @@ some people find this rather extreme[^xp], and that's fine. YMMV.
 
 ### Rewrite
 
-And like any good story, also this one needs to be polished and rewritten to be
+And like any good story, this one also needs to be polished and rewritten to be
 as good as it can be. I do that all the time. When I'm working on a feature, I
 may for example have ten commits that form a logical whole. Then I notice
 that there was a change that should have been part of one of those commits, but

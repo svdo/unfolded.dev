@@ -4,12 +4,11 @@
 
 In my daily work, I have the good fortune to work with many very talented
 people. Some are professional software developers, like myself. Others are for
-example researchers, scientist. They typically also write software, but not as
-their main activity. Also, they often have no formal training as software
-developers. In this series of blog posts I will explain the best practices that
-we use as professional software developers, so that others may be able to
-benefit from it. So that writing software hopefully takes them less effort and
-gives them more pleasure.
+example researchers, scientist, project leaders, and so on. Is that you? Do you
+also write software, but not as your main activity? Do you have some experience
+but maybe no formal training? In this series of blog posts I will explain the
+best practices that I use, so that you may be able to benefit from them. So that
+writing software hopefully takes you less effort and gives you more pleasure.
 
 1. [Using Git (more) Effectively](/posts/2020-07-21-using-git-more-effectively)
 
