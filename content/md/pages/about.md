@@ -14,10 +14,10 @@ it, for example at conferences, or using coding dojos.
 
 ## About My Blog
 
-I decided it's part for my own little place out there. I like to write a blog
-post now and then, and I like it to be accessible. I also like it to be
-privacy-friendly. No tracking pixels, social network cookies, no paywall, etc.
-Just me, you, and the content.
+I decided it's time for my own place out there. I like to write a blog post now
+and then, and I like it to be accessible. I also like it to be privacy-friendly.
+No tracking pixels, social network cookies, no paywall, etc. Just me, you, and
+the content.
 
 The name "Unfolded" has two sides to it. On the one hand it's about unfolding
 things in the sense of explaining them. And on the other hand it's a reference
