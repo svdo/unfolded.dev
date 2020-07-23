@@ -1,4 +1,4 @@
-{:title "Software Devlopment: Easy To Learn, Hard To Master"
+{:title "Software Development: Easy To Learn, Hard To Master"
  :layout :page
  :page-index 2}
 
