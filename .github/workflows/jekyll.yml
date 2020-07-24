@@ -10,7 +10,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container: circle-ci/clojure
+    container: circleci/clojure
 
     steps:
     - uses: actions/checkout@v2
