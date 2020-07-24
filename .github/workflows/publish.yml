@@ -10,16 +10,18 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container: circleci/clojure
 
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: lein run
+      run: |
+        docker build -t cryogen .
+        docker run -v ${{ github.workspace }}:/usr/src/app -w /usr/src/app cryogen
         
     - name: Publish
       uses: crazy-max/ghaction-github-pages@v2.1.1
       with:
-        build_dir: public
+        build_dir: ${{ github.workspace }}/public
         fqdn: unfolded.dev
         jekyll: false
+
