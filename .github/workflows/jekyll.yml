@@ -10,18 +10,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    container: circle-ci/clojure
 
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/source \
-        circleci/clojure:latest /bin/bash -c "cd /source && lein run"
+      run: lein run
         
     - name: Publish
       uses: crazy-max/ghaction-github-pages@v2.1.1
       with:
-        build_dir: ${{ github.workspace }}/public
+        build_dir: public
         fqdn: unfolded.dev
         jekyll: false
