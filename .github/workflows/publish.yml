@@ -24,4 +24,6 @@ jobs:
         build_dir: ${{ github.workspace }}/public
         fqdn: unfolded.dev
         jekyll: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
