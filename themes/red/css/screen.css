@@ -57,7 +57,8 @@ body {
   background-color: #d45442;
 }
 
-.navbar-default .navbar-nav .active a {
+.navbar-default .navbar-nav .active a,
+.navbar-default .navbar-nav .active a:hover {
   color: #fffbf0;
   background-color: #d45442;
 }
