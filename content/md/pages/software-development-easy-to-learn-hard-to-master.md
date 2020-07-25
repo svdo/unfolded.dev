@@ -1,5 +1,6 @@
 {:title "Software Development: Easy To Learn, Hard To Master"
  :layout :page
+ :series? true
  :page-index 2}
 
 In my daily work, I have the good fortune to work with many very talented
