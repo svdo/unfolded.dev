@@ -170,6 +170,13 @@ will bring you the satisfaction it has given me!
 
 <div style="text-align: center; font-size: 3em;">🤠</div>
 
+## [Comments][comments]
+
+Since this is a privacy-friendly static web site, I'm not including the ability
+to post comments directly here. I do love feedback though, so I created a ticket
+on GitHub that you can use to leave your comments. Tell me if it's bad, tell me
+if it's good, but please don't forget to tell me _why_. So please head over
+there and [leave your comments][comments]!
 
 [creative-pursuit]: https://iism.org/article/why-are-ceos-failing-software-engineers-56
 [corecursive]: https://corecursive.com/software-that-doesnt-suck-with-jim-blandy/
@@ -180,6 +187,7 @@ will bring you the satisfaction it has given me!
 [commit2]: https://github.com/svdo/unfolded.dev/commit/63c1a75a857b8c6075c9d8302535309b1857ec37
 [commit3]: https://github.com/svdo/unfolded.dev/commit/9fb7189a19b5d1b0f53113996d9a95259395b193
 [xp]: http://www.extremeprogramming.org
+[comments]: https://github.com/svdo/unfolded.dev/issues/1
 [^fiction]: The names and conversation is made-up, but not unlike real conversations that I have witnessed.
 [^vcs-history]: In the time that I meant in the beginning, git didn't exist yet. Even subversion was not that common yet. CVS anyone? RCS? Listen to [this episode of the amazing CoRecursive podcast][corecursive] if you're interested in a bit of history about CVS, SVN and git.
 [^xp]: You may not be surprised to hear that I'm fond of [Extreme Programming][xp].
