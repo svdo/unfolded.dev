@@ -14,7 +14,7 @@ it, for example at conferences, or using coding dojos.
 
 ## About My Blog
 
-I decided it's time for my own place out there. I like to write a blog post now
+I decided it's time for my own blog "out there". I like to write a blog post now
 and then, and I like it to be accessible. I also like it to be privacy-friendly.
 No tracking pixels, social network cookies, no paywall, etc. Just me, you, and
 the content.
