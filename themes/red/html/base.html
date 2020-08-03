@@ -95,7 +95,7 @@
               <h3>Recent Posts</h3>
               <ul>
                 {% for post in latest-posts %}
-                <li><a href="{{post.uri}}">{{post.title}}</a></li>
+                <li><a href="{{post.uri}}">{{post.title|capitalize}}</a></li>
                 {% endfor %}
               </ul>
             </div>
@@ -105,7 +105,7 @@
                 <ul>
                   {% for page in sidebar-pages %}
                   {% if page.series? %}
-                  <li><a href="{{page.uri}}">{{page.title}}</a></li>
+                  <li><a href="{{page.uri}}">{{page.title|capitalize}}</a></li>
                   {% endif %}
                   {% endfor %}
                 </ul>
