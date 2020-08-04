@@ -1,4 +1,4 @@
-{:title "Posts Elsewhere"
+{:title "Posts elsewhere"
  :layout :page
  :page-index 1}
 
