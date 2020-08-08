@@ -12,11 +12,11 @@ best practices that I use, so that you may be able to benefit from them. So that
 writing software hopefully takes you less effort and gives you more pleasure.
 
 1. [Using Git (more) Effectively](/posts/2020-07-21-using-git-more-effectively)
+2. [Continuous Integration: What It Is and Four Reasons Why I Like It](/posts/2020-08-08-continuous-integration)
 
 Other articles will follow. Here's some topics that you may expect:
 
-* Unit Testing
-* Continuous Integration
+* Unit Testing / Test Driven Development
 * Static code analysis
 * Dynamic code analysis
 * ...
