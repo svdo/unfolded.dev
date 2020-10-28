@@ -313,6 +313,13 @@ possible to setup Grafana in such a way that you can view the graphs in your
 dashboard. This of course requires you to run Grafana somewhere (so no longer
 without third-party tools), but that might be a nice next step.
 
+## [Comments][comments]
+
+Since this is a privacy-friendly static web site, I'm not including the ability
+to post comments directly here. I do love feedback though, so I created a ticket
+on GitHub that you can use to leave your comments. Tell me if it's bad, tell me
+if it's good, but please don't forget to tell me _why_. So please head over
+there and [leave your comments][comments]!
 
 [github-pages]: https://pages.github.com
 [bitbucket-pages]: https://support.atlassian.com/bitbucket-cloud/docs/publishing-a-website-on-bitbucket-cloud/
@@ -321,5 +328,6 @@ without third-party tools), but that might be a nice next step.
 [leiningen]: https://leiningen.org
 [cloverage]: https://github.com/cloverage/cloverage
 [circleci-add-keys]: https://circleci.com/docs/2.0/add-ssh-key/
+[comments]: https://github.com/svdo/unfolded.dev/issues/4
 [^or-branch]: Some platforms also support using a separate branch of your normal
 source code repository instead of a separate repository.
