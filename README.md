@@ -11,3 +11,12 @@ know, preferably including _why_ you find things good or bad. Thanks!
 
 This blog was created using [Cryogen](http://cryogenweb.org), which is a static
 site generator written in Clojure.
+
+Usage
+-----
+
+To run the blog locally with automatic updating, use:
+
+```bash
+lein ring server
+```
