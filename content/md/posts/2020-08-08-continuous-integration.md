@@ -2,7 +2,7 @@
  :subtitle "Software Development: Easy To Learn, Hard To Master"
  :description "Right after creating a new project, for may of those I'll also setup continuous integration fairly quickly. In this post I'll go into what I mean with 'continuous integration' and the reasons why I like it: having a safety net, lowering the threshold for third-party contributions, having executable documentation, and making sure that things will keep working in the future."
  :layout :post
- :tags ["continuous integration", "continuous delivery", "ci/cd", "software quality"]
+ :tags ["continuous integration", "continuous delivery", "ci/cd", "software quality", "rapid feedback"]
  :toc true
  :author "Stefan"
  :date "2020-08-08"}
