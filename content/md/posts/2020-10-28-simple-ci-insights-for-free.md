@@ -313,7 +313,7 @@ possible to setup Grafana in such a way that you can view the graphs in your
 dashboard. This of course requires you to run Grafana somewhere (so no longer
 without third-party tools), but that might be a nice next step.
 
-## [Comments][comments]
+## Comments
 
 Since this is a privacy-friendly static web site, I'm not including the ability
 to post comments directly here. I do love feedback though, so I created a ticket
