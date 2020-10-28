@@ -1,4 +1,4 @@
-{:title "Continuous Insights Graphs And Metrics For Free"
+{:title "Continuous Insights: Graphs And Metrics For Free"
  :subtitle "Simple method for gaining CI insights for private repos and commercial use – for free"
  :description "It is often useful to collect some metrics from your continuous integration setup, so that you can track them over time as you are evolving your source code. For example, maybe you want to have a graph of your code coverage. Or of the runtime performance of your system. This post tells you how I set up a very simple solution that requires nothing that you don't already have: no extra subscriptions, no third-party services."
  :layout :post
