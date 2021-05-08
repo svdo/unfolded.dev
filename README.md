@@ -20,3 +20,11 @@ To run the blog locally with automatic updating, use:
 ```bash
 lein ring server
 ```
+
+or:
+
+```bash
+lein ring server-fast
+```
+
+Alternatively you can use `clj -X:serve` or `-X:serve:fast`.
