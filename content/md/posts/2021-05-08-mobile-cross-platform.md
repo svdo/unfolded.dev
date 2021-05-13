@@ -64,7 +64,7 @@ I don't want to be limited by the framework. And yes, I know, most of these
 frameworks allow you to break out and implement custom platform-specific parts,
 but that defeats the purpose, doesn't it? (More on this below.)
 
-Another point it **accessibility**: cross-platform frameworks tend to support only
+Another point is **accessibility**: cross-platform frameworks tend to support only
 parts of the accessibility features of the native environments, so that it
 becomes very hard to support your users that have extra needs. And using native
 SDKs you already get a lot out of the box, e.g. when using SwiftUI your
@@ -117,7 +117,7 @@ it's the other way around. The framework is the basis of your app, and you have
 to use the means that are provided by the framework to get your stuff done. If
 your desires match those of the framework only in part, you're out of luck. From
 my own experience, when I have to use a framework I invariably run into the
-boundaries that its sets. The customer (or myself) wants something that simply
+boundaries that it sets. The customer (or myself) wants something that simply
 isn't possible with the framework unless spending tons of effort (if then). Most
 cross-platform tools are frameworks. I don't like frameworks. They make my
 software more expensive, because sooner or later you always run into those
@@ -131,7 +131,7 @@ the time.
 ## Architecture
 
 Here is the idea that I'm implementing. I call it "**Strohm Native**"[^strohm].
-It implements the flow architecture (as implemented by Redux, for example), on
+It implements the flow architecture (as implemented by Redux, for example[^flow]), on
 the boundary between native Swift/Kotlin and JavaScript. The store, reducers and
 actions are in JavaScript, but the subscriptions to changes of the store are
 done on the native side. Using data binding, you can then easily bind specific
@@ -178,6 +178,8 @@ there and [leave your comments][comments]!
 [^strohm]: I named it "Strohm", inspired by how the name "Drupal" [came to
 be](https://www.drupal.org/about/history). The Dutch word "stroom" means "flow",
 and the English pronounciation of that word is very close to "strohm".
+[^flow]: If you don't know what this is about, no worries, that's ok. In an
+upcoming post I will explain.
 
 [comments]: https://github.com/svdo/unfolded.dev/issues/5
 [wikipedia-library]: https://en.wikipedia.org/wiki/Library_(computing)
