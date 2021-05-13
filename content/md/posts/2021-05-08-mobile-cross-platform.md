@@ -1,8 +1,8 @@
 {:title "ReactNative, Flutter, Cordova, etc: the state of the art is not good enough."
  :subtitle "A new approach to developing cross-platform Android and iOS apps"
- :description ""
+ :description "There's lots of cross-platform development frameworks for writing iOS and Android apps. I don't like any of the existing ones too much. Some I passionately don't like, some are OK-ish, but none are great, I feel. In this first post of a series I describe what I think the problems are, and the direction I'm taking to address them."
  :layout :post
- :tags ["mobile", "cross platform"]
+ :tags ["mobile", "cross platform", "Strohm Native"]
  :toc true
  :author "Stefan"
  :date "2021-05-09"
