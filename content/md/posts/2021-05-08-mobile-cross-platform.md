@@ -131,11 +131,12 @@ the time.
 ## Architecture
 
 Here is the idea that I'm implementing. I call it "**Strohm Native**"[^strohm].
-It implements the flow architecture (as implemented by Redux, for example[^flow]), on
-the boundary between native Swift/Kotlin and JavaScript. The store, reducers and
-actions are in JavaScript, but the subscriptions to changes of the store are
+It implements the flow architecture (as also implemented by Redux, for example),
+on the boundary between native Swift/Kotlin and JavaScript. The store, reducers
+and actions are in JavaScript, but the subscriptions to changes of the store are
 done on the native side. Using data binding, you can then easily bind specific
-parts of your store's state to your native UI.
+parts of your store's state to your native UI. If you don't know what this is
+all about, no worries, that's ok. I will explain in an upcoming post.
 
 The idea is that (1) you create a view model on the native side, where you
 subscribe to the parts of the state that you're interested in:
@@ -178,8 +179,6 @@ there and [leave your comments][comments]!
 [^strohm]: I named it "Strohm", inspired by how the name "Drupal" [came to
 be](https://www.drupal.org/about/history). The Dutch word "stroom" means "flow",
 and the English pronounciation of that word is very close to "strohm".
-[^flow]: If you don't know what this is about, no worries, that's ok. In an
-upcoming post I will explain.
 
 [comments]: https://github.com/svdo/unfolded.dev/issues/5
 [wikipedia-library]: https://en.wikipedia.org/wiki/Library_(computing)
