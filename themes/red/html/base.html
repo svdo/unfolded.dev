@@ -125,7 +125,7 @@
             <div id="tags">
               <h3>Tags</h3>
               <ul>
-                {% for tag in tags %}
+                {% for tag in tags|sort-by:name %}
                 <li><a href="{{tag.uri}}">{{tag.name}}</a></li>
                 {% endfor %}
               </ul>
