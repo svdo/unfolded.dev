@@ -2,11 +2,14 @@
  :subtitle "Gitops is useful for everyone, also for small companies"
  :description "When working with Kubernetes, add gitops in the mix sooner rather than later."
  :layout :post
- :tags ["kubernetes", "gitops", "ArgoCD"]
+ :tags ["kubernetes", "gitops", "Argo CD", "continuous integration", "continuous delivery"]
  :toc true
  :author "Stefan"
  :date "2025-08-27"
- :draft? true}
+ :draft? true
+ :unlisted? false}
+
+ <!-- mention something about experience report in (sub)title/desc? -->
 
 Nowadays Kubernetes seems to be the default tool used for running applications
 in the cloud. Much can be said about whether that's a good idea or not, but that
@@ -19,7 +22,7 @@ that you may want to avoid.
 
 <!--more-->
 
-## What is gitops and how does it fit in with Kubernetes?
+## What is gitops and why would you want to use it for Kubernetes?
 
 If you want a proper definition, please refer to your favorite search engine. My
 description: gitops is a method of using git to define what is running in your
@@ -74,10 +77,76 @@ about to start their working day, so before things spin out of control they
 quickly ran `kubectl edit` to increase the memory limit. Customers happy, boss
 happy, great way to start the day.
 
-You know what happens next, right? You make an unrelated change to the deployment in the git repo, and run `kubectl apply`, not knowing that you are thereby resetting the memory limit to the lower value, because your coworker didn't update the git repo.
+You know what happens next, right? You make an unrelated change to the
+deployment in the git repo, and run `kubectl apply`, not knowing that you are
+thereby resetting the memory limit to the lower value, because your coworker
+didn't update the git repo.
 
-<div style="text-align: center; font-size: 3em;" title="smarty pants">😱</div>
+<div style="text-align: center; font-size: 3em;" title="oh no!">😱</div>
 
-Wouldn't it be nice if the changes that you make in your git repo were _continuously_ and _automatically_ deployed to the cluster? And that manual changes (`kubectl edit`) are not even possible, because the system would detect that it no longer matches what is described in the git repo and automatically re-apply it?
+Wouldn't it be nice if the changes that you make in your git repo were
+_continuously_ and _automatically_ deployed to the cluster? And that manual
+changes (`kubectl edit`) are not even possible, because the system would detect
+that it no longer matches what is described in the git repo and automatically
+re-apply it? Yes!
 
 Enter gitops.
+
+## Gitops using Argo CD
+
+Gitops is facilitated by a tool that does the work for you, and we're using
+[Argo CD][argocd][^argocd] for that. Argo CD defines the concept of an
+`Application`, which groups all resources for an application: deployments,
+services, ingresses, pod disruption budgets, network policies, you name it. You
+store everything in a git repo, and after having Argo CD installed you tell it
+you want to add that application, pointing it to your git repo. Argo CD then
+checks out the repo (in the cluster, not locally) and deploys anything it finds
+in that repo. It then does two things:
+
+- It monitors whether the _actual_ state of your resources matches the _desired_
+  state, namely what was defined in the git repo. If they are different, Argo CD
+  will automatically reapply what was defined in the git repo, making manual
+  changes impossible. Which, as I explained above, is a good thing.
+- It also monitors the git repo. When it finds a new commit, it will takes that
+  as its _new desired state_ updates all resources to match that new desired
+  state.
+
+## How we are using it
+
+As soon as you're trying to use Argo CD beyond anything trivial, there's lots of
+choices and design decisions that you have to make. We did that too, and I'll
+tell you what we are using currently, after going through a few iterations.
+
+### app of apps
+
+...
+
+### kustomize/helm/jssonet
+
+...
+
+### multiple envs
+
+...
+
+### deploy using versions.json
+
+...
+
+## don't / ignore (?) specify replica counts
+
+...
+
+## Open issues
+
+- ... (proper continuous deployment => you don't know when _all_ apps are sync'ed)
+- ...
+
+<!-- end matter -->
+
+[^argocd]: Another well-known alternative is [Flux][flux]. I'm making no claims
+    as to which is better. A few years ago we chose Argo CD and it has suited us
+    well so far. Both have pros and cons.
+
+[argocd]: https://argo-cd.readthedocs.io/
+[flux]: https://fluxcd.io
