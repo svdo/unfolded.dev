@@ -6,7 +6,7 @@
  :toc true
  :author "Stefan"
  :date "2025-08-27"
- :draft? true
+ :draft? false
  :unlisted? false}
 
  <!-- mention something about experience report in (sub)title/desc? -->
@@ -36,8 +36,10 @@ Scaleway, then you maybe need things like object storage buckets to exist. Maybe
 you want a private network for your Kubernetes cluster. You want to define some
 users, and of course the cluster itself. All of that can be done using tools
 like Pulumi, Ansible, Terraform/OpenTofu, etc. And all of that can leverage
-gitops. But again, that is not what this post is about; instead, this is about
-using it to manage the resources running inside your Kubernetes cluster.
+gitops. But that is not what this post is about; instead, this is about
+using gitops to manage the resources running inside your Kubernetes cluster.
+
+### Kubernetes Level 1: manually editing resource definitions
 
 You probably already know some this, but for context let me start from the
 beginning. Suppose I want to run an application on my Kubernetes cluster. I do
@@ -54,6 +56,8 @@ Since you're a responsible person, but also a very busy person with many
 responsibilities, you sometimes forget to document the commands that you ran.
 And that document is very cumbersome anyway, because you can use it to track the
 _changes_, but not to see what the _expected state_ is.
+
+### Kubernetes Level 2: manually applying resource definition files
 
 For your sanity, I hope you were able to skip that stage and started at least at
 the next one: instead of running all those commands, you keep a yaml description
@@ -79,7 +83,7 @@ happy, great way to start the day.
 
 You know what happens next, right? You make an unrelated change to the
 deployment in the git repo, and run `kubectl apply`, not knowing that you are
-thereby resetting the memory limit to the lower value, because your coworker
+thereby reverting the memory limit to the lower value, because your coworker
 didn't update the git repo.
 
 <div style="text-align: center; font-size: 3em;" title="oh no!">😱</div>
@@ -92,61 +96,35 @@ re-apply it? Yes!
 
 Enter gitops.
 
-## Gitops using Argo CD
+### Kubernetes Level 3: Gitops
 
-Gitops is facilitated by a tool that does the work for you, and we're using
-[Argo CD][argocd][^argocd] for that. Argo CD defines the concept of an
-`Application`, which groups all resources for an application: deployments,
-services, ingresses, pod disruption budgets, network policies, you name it. You
-store everything in a git repo, and after having Argo CD installed you tell it
-you want to add that application, pointing it to your git repo. Argo CD then
-checks out the repo (in the cluster, not locally) and deploys anything it finds
-in that repo. It then does two things:
+The crucial difference when you're using gitops, is that you basically _cannot_
+manually change resources anymore. Inside the Kubernetes cluster, some
+controller is running that continuously pulls your gitops repo, and
+automatically makes sure that all _live_ resources are the same as the _defined_
+resources in the gitops repo. So if you edit something manually, it will just be
+automatically undone by the gitops controller.
 
-- It monitors whether the _actual_ state of your resources matches the _desired_
-  state, namely what was defined in the git repo. If they are different, Argo CD
-  will automatically reapply what was defined in the git repo, making manual
-  changes impossible. Which, as I explained above, is a good thing.
-- It also monitors the git repo. When it finds a new commit, it will takes that
-  as its _new desired state_ updates all resources to match that new desired
-  state.
+Going back to the example before, it means that your colleague comes in early in
+the morning, detects the problem, but now has no other way of fixing it than by
+pushing an update of the resource definition in the gitops repo. The gitops
+controller automatically pulls the updated repo and applies the change. Problem
+solved, but now the gitops repo still matches the live version, so you can
+safely make your own changes without worrying about discrepancies with the
+cluster state.
 
-## How we are using it
+## Upcoming Posts
 
-As soon as you're trying to use Argo CD beyond anything trivial, there's lots of
-choices and design decisions that you have to make. We did that too, and I'll
-tell you what we are using currently, after going through a few iterations.
+At Viduet, when we started using Kubernetes, we also immediately did so using
+gitops. It has been a very rewarding experience, even though things get a bit
+more complex now and then. This post is the first one in a series of posts, in
+which I describe the setup we have deployed, using kustomize/helm/jsonnet,
+managing multiple environments in one repository, integration with CI/CD, and
+lessons learned. If there is anything you are specifically interested in, please
+let me know at stefan _at_ viduet.eu.
 
-### app of apps
+Stay tuned!
 
-...
-
-### kustomize/helm/jssonet
-
-...
-
-### multiple envs
-
-...
-
-### deploy using versions.json
-
-...
-
-## don't / ignore (?) specify replica counts
-
-...
-
-## Open issues
-
-- ... (proper continuous deployment => you don't know when _all_ apps are sync'ed)
-- ...
+<div style="text-align: center; font-size: 3em;" title="Stay tuned!">📻</div>
 
 <!-- end matter -->
-
-[^argocd]: Another well-known alternative is [Flux][flux]. I'm making no claims
-    as to which is better. A few years ago we chose Argo CD and it has suited us
-    well so far. Both have pros and cons.
-
-[argocd]: https://argo-cd.readthedocs.io/
-[flux]: https://fluxcd.io
