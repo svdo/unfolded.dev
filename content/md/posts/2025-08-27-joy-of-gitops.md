@@ -2,11 +2,11 @@
  :subtitle "Gitops is useful for everyone, also for small companies"
  :description "When working with Kubernetes, add gitops in the mix sooner rather than later."
  :layout :post
- :tags ["kubernetes", "gitops", "Argo CD", "continuous integration", "continuous delivery"]
+ :tags ["Kubernetes", "gitops", "Argo CD", "continuous integration", "continuous delivery"]
  :toc true
  :author "Stefan"
  :date "2025-08-27"
- :draft? false
+ :draft? true
  :unlisted? false}
 
  <!-- mention something about experience report in (sub)title/desc? -->
@@ -41,6 +41,8 @@ using gitops to manage the resources running inside your Kubernetes cluster.
 
 ### Kubernetes Level 1: manually editing resource definitions
 
+![Kubernetes Level 1: manually editing resource definitions](/img/gitops/level-1-manual-edit.png)
+
 You probably already know some this, but for context let me start from the
 beginning. Suppose I want to run an application on my Kubernetes cluster. I do
 `kubectl run ...` and voila. Then the application terminates for some reason,
@@ -55,9 +57,11 @@ updated, secrets are changed, and you happily `kubectl edit` all of these.
 Since you're a responsible person, but also a very busy person with many
 responsibilities, you sometimes forget to document the commands that you ran.
 And that document is very cumbersome anyway, because you can use it to track the
-_changes_, but not to see what the _expected state_ is.
+_changes_, but not to see what the _expected state_ is.dd
 
 ### Kubernetes Level 2: manually applying resource definition files
+
+![Kubernetes Level 2: manually applying resource definition files](/img/gitops/level-2-apply-files.png)
 
 For your sanity, I hope you were able to skip that stage and started at least at
 the next one: instead of running all those commands, you keep a yaml description
@@ -98,6 +102,8 @@ Enter gitops.
 
 ### Kubernetes Level 3: Gitops
 
+![Kubernetes Level 3: Gitops](/img/gitops/level-3-gitops.png)
+
 The crucial difference when you're using gitops, is that you basically _cannot_
 manually change resources anymore. Inside the Kubernetes cluster, some
 controller is running that continuously pulls your gitops repo, and
@@ -120,10 +126,11 @@ gitops. It has been a very rewarding experience, even though things get a bit
 more complex now and then. This post is the first one in a series of posts, in
 which I describe the setup we have deployed, using kustomize/helm/jsonnet,
 managing multiple environments in one repository, integration with CI/CD, and
-lessons learned. If there is anything you are specifically interested in, please
-let me know at stefan _at_ viduet.eu.
+lessons learned.
 
-Stay tuned!
+If there are any specific topics or questions you'd like me to address in future
+posts, please don't hesitate to reach out at stefan _at_ viduet.eu. I'd love to
+hear from you!
 
 <div style="text-align: center; font-size: 3em;" title="Stay tuned!">📻</div>
 
