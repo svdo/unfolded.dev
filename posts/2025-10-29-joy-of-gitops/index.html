@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Unfolded: The Joy of Gitops for Kubernetes – Useful Tips and Best Practices</title>
+    
+<meta name="keywords" content="xp,insights,continuous integration,rapid feedback,software quality,cross platform,Strohm Native,git,mobile,version control,ci/cd,metrics,continuous delivery">
+
+<meta name="description" content="When working with Kubernetes, add gitops in the mix sooner rather than later.">
+
+<meta property="og:description" content="When working with Kubernetes, add gitops in the mix sooner rather than later.">
+
+<meta property="og:url" content="https://unfolded.dev/posts/2025-10-29-joy-of-gitops/" />
+<meta property="og:title" content="The Joy of Gitops for Kubernetes – Useful Tips and Best Practices" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://unfolded.dev/posts/2025-10-29-joy-of-gitops/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="//fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400italic,900italic,400,900"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/ir-black.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+    <link href="/css/screen.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-expanded="false"
+            aria-controls="navbar"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Unfolded</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li >
+              <a href="/">Home</a>
+            </li>
+            <li >
+              <a href="/archives/">Archives</a>
+            </li>
+            
+            <li
+              
+            >
+            <a href="/pages/about/">About</a>
+            </li>
+            
+            <li><a href="/feed.xml">RSS</a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+      <!--/.container-fluid -->
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">October 29, 2025</div>
+        
+        <span class="col-lg-6 right">By: Stefan</span>
+        
+    </div>
+    <h2>The Joy of Gitops for Kubernetes – Useful Tips and Best Practices</h2>
+    
+    <h3 class="subtitle">Gitops part 1: Gitops is useful for everyone, also for small companies</h3>
+    
+</div>
+
+<div id="post-tags">
+    
+    <span class="tag"><a href=""></a></span>
+    
+    <span class="tag"><a href=""></a></span>
+    
+    <span class="tag"><a href=""></a></span>
+    
+    <span class="tag"><a href=""></a></span>
+    
+    <span class="tag"><a href=""></a></span>
+    
+</div>
+
+<div>
+    
+    <h2>Contents</h2>
+    <ol class="toc"><li><a href="#what-is-gitops-and-why-would-you-want-to-use-it-for-kubernetes">What is gitops and why would you want to use it for Kubernetes?</a></li><ol><li><a href="#kubernetes-level-1-manually-editing-resource-definitions">Kubernetes Level 1: manually editing resource definitions</a></li><li><a href="#kubernetes-level-2-manually-applying-resource-definition-files">Kubernetes Level 2: manually applying resource definition files</a></li><li><a href="#kubernetes-level-3-gitops">Kubernetes Level 3: Gitops</a></li></ol><li><a href="#upcoming-posts">Upcoming Posts</a></li></ol>
+    
+     <!-- mention something about experience report in (sub)title/desc? --><p>Nowadays Kubernetes seems to be the default tool used for running applications
+in the cloud. Much can be said about whether that's a good idea or not, but that
+is not the topic of this series. Instead, I want to talk to you about how we are
+managing the workloads that are running inside our Kubernetes clusters. Setting
+everything up was quite an exploration, but at this point we have a working
+setup that we are very happy with. In this series I'll describe what our setup
+looks like and some of the things that work well for us, as well as some thing
+that you may want to avoid. Let's get started with the basics: what is gitops
+all about?</p><!--more--><h2 id="what-is-gitops-and-why-would-you-want-to-use-it-for-kubernetes">What is gitops and why would you want to use it for Kubernetes?</h2><p>If you want a proper definition, please refer to your favorite search engine. My
+description: gitops is a method of using git to define what is running in your
+infrastructure, to use it as the <em>source of truth</em>. In other words: if you want
+to know what is running, you can just look at the git repo. And if you want to
+change what is running, you change it in that git repo.</p><p>Gitops can be used for any part of your infrastructure. Let's say you want to
+start from scratch on a hosting provider such as OVH Cloud, Exoscale or
+Scaleway, then you maybe need things like object storage buckets to exist. Maybe
+you want a private network for your Kubernetes cluster. You want to define some
+users, and of course the cluster itself. All of that can be done using tools
+like Pulumi, Ansible, Terraform/OpenTofu, etc. And all of that can leverage
+gitops. But again that is not what this post is about; instead, this is about
+using gitops to manage the resources running inside your Kubernetes cluster.</p><h3 id="kubernetes-level-1-manually-editing-resource-definitions">Kubernetes Level 1: manually editing resource definitions</h3><p>You probably already know some this, but for context let me start from the
+beginning. Suppose I want to run an application on my Kubernetes cluster. I do
+<code>kubectl run ...</code> and voilà. Then the application terminates for some reason,
+and things stop working. So you define a <code>Deployment</code> that manages the
+application, can restart and even scale it. Since this has to be reachable from
+the outside, you also want to define a <code>Service</code> and an <code>Ingress</code>. Oh and it
+also needs some access to the cluster API, so you need a <code>Role</code> and
+<code>RoleBinding</code>. So you run a bunch of <code>kubectl create</code> commands and all is well.
+Whenever you need to make a change, you use <code>kubectl edit</code> to edit the resource.</p><p>To illustrate this, this is how you might edit an ingress resource:</p><p><img src="/img/gitops/level-1-manual-edit.png" alt="Kubernetes Level 1: manually editing resource definitions" /></p><ol><li>Run <code>kubectl edit ingress ...</code> to open the resource definition in your editor and make your changes.</li><li>Save the file, exit your editor, and the changes are live.</li></ol><p>Of course, since you're a responsible person, you document the commands that
+you have run somewhere. Over time things need to be adjusted, configuration is
+updated, secrets are changed, and you happily <code>kubectl edit</code> all of these.
+Since you're a responsible person, but also a very busy person with many
+responsibilities, you sometimes forget to document the commands that you ran.
+And that document is very cumbersome anyway, because you can use it to track the
+<em>changes</em>, but not to see what the <em>expected state</em> is.</p><h3 id="kubernetes-level-2-manually-applying-resource-definition-files">Kubernetes Level 2: manually applying resource definition files</h3><p>For your sanity, I hope you were able to skip that stage and started at least at
+the next one: instead of running all those commands, you keep a yaml description
+of your Kubernetes resources in files, and track those files in git. So now when
+you want to change something, you edit the file, and re-apply that file using
+<code>kubectl apply</code> instead of <code>kubectl edit</code>. So now your process looks like this:</p><p><img src="/img/gitops/level-2-apply-files.png" alt="Kubernetes Level 2: manually applying resource definition files" /></p><ol><li>Open a resource definition (yaml) file from your git repo in your editor and
+make your changes.</li><li>Save your changes and exit your editor.</li><li>Commit and push your changes to git.</li><li>In your terminal run <code>kubectl apply -f &lt;file.yaml&gt;</code> to apply the changes to
+the cluster.</li></ol><p>This gives you some advantages:</p><ul><li>The git repository can be used as a replacement for that document that you
+were keeping earlier; the git history shows all the <em>changes</em> over time, and
+the latest state of the repo shows what is applied to the cluster: the
+<em>current state</em>.</li><li>Therefore it is now a lot easier to share the maintenance burden with your
+coworkers who were also editing resources, but obviously not as good as you in
+documenting them.</li></ul><p>Occasionally things still go wrong. Your colleague who starts working an hour
+earlier than you turned on his machine, and noticed that the application had
+been crashing every half our during the night, because it ran out of memory.
+Memory limits are great, but not when they are too low! All your customers are
+about to start their working day, so before things spin out of control they
+quickly ran <code>kubectl edit</code> to increase the memory limit. Customers happy, boss
+happy, great way to start the day.</p><p>You know what happens next, right? You make an unrelated change to the
+deployment in the git repo, and run <code>kubectl apply</code>, not knowing that you are
+thereby reverting the memory limit to the lower value, because your coworker
+didn't update the git repo. In other words: the <em>current state</em> of the cluster
+was not in fact the <em>expected state</em>.</p><div style="text-align: center; font-size: 3em;" title="oh no!">😱</div><p>Wouldn't it be nice if the changes that you make in your git repo were
+<em>continuously</em> and <em>automatically</em> deployed to the cluster? And that manual
+changes (<code>kubectl edit</code>) are not even possible, because the system would detect
+that it no longer matches what is described in the git repo and automatically
+re-apply it? Yes!</p><p>Enter gitops.</p><h3 id="kubernetes-level-3-gitops">Kubernetes Level 3: Gitops</h3><p>The crucial difference when you're using gitops, is that you basically <em>cannot</em>
+manually change resources anymore<sup id="fnref-1"><a class="footnote-ref" href="#fn-1">1</a></sup>. Inside the Kubernetes cluster,
+there is some controller that continuously pulls your gitops repo, and
+automatically makes sure that all <em>live</em> resources are the same as the <em>defined</em>
+resources in the gitops repo. So if you edit something manually, it will just be
+automatically undone by the gitops controller. In other words: this controller
+makes sure that the <em>current state</em> is always equal to the <em>expected state</em>
+(also known as <em>desired state</em>).</p><p>Now this is what happens (notice how the git repository is now in the middle):</p><p><img src="/img/gitops/level-3-gitops.png" alt="Kubernetes Level 3: Gitops" /></p><ol><li>Open a resource definition (yaml) file from your git repo in your editor and
+make your changes.</li><li>Save your changes and exit your editor.</li><li>Commit and push your changes to git.</li><li><strong>[new]</strong> The gitops controller in your cluster pulls the changes you just
+pushed.</li><li><strong>[new]</strong> The gitops controller automatically applies the changes for you.</li></ol><p>Going back to the example from before, it means that your colleague comes in
+early in the morning, detects the problem, but now has no other way of fixing it
+than by pushing an update of the resource definition in the gitops repo. The
+gitops controller automatically pulls the updated repo and applies the change.
+Problem solved, but now the gitops repo still matches the live version, so you
+can safely make your own changes without worrying about discrepancies with the
+cluster state.</p><h2 id="upcoming-posts">Upcoming Posts</h2><p>At Viduet, when we started using Kubernetes, we immediately did so using
+gitops. It has been a very rewarding experience, even though things get a bit
+more complex now and then. This post is the first one in a series of posts, in
+which I describe the setup we have deployed, using kustomize/helm/jsonnet,
+managing multiple environments in one repository, integration with CI/CD, and
+lessons learned.</p><p>If there are any specific topics or questions you'd like me to address in future
+posts, please don't hesitate to reach out. I'd love to <a href="https://github.com/svdo/unfolded.dev/issues/6">hear from you</a>!</p><div style="text-align: center; font-size: 3em;" title="Stay tuned!">📻</div><!-- end matter --><div class="footnotes"><hr /><ol><li id="fn-1"><p>Of course you can make exceptions to that rule if you like. For
+example, we exclude the number of replica's from this rule, so that our
+deployments can be dynamically scaled without needing to change the contents
+of the git repo.</p><a href="#fnref-1" class="footnote-backref">↩</a></li></ol></div>
+</div>
+
+    <div id="prev-next">
+        
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+          <div id="sidebar">
+            
+            <div id="recent">
+              <h3>Recent Posts</h3>
+              <ul>
+                
+                <li><a href="/posts/2021-05-08-mobile-cross-platform/">Reactnative, flutter, cordova, etc: the state of the art is not good enough.</a></li>
+                
+                <li><a href="/posts/2020-10-28-simple-ci-insights-for-free/">Continuous insights: graphs and metrics for free</a></li>
+                
+                <li><a href="/posts/2020-08-08-continuous-integration/">Continuous integration: what it is and four reasons why i like it</a></li>
+                
+              </ul>
+            </div>
+            
+            <div id="series">
+                <h3>Series</h3>
+                <ul>
+                  
+                  
+                  
+                  
+                  <li><a href="/pages/software-development-easy-to-learn-hard-to-master/">Software development: easy to learn, hard to master</a></li>
+                  
+                  
+                </ul>
+            </div>
+            <h3>Links</h3>
+            <ul id="links">
+              <li>
+                <a href="https://github.com/svdo">Stefan's GitHub</a>
+              </li>
+              
+              
+              <li><a href="/pages/posts-elsewhere/">Posts elsewhere</a></li>
+              
+              
+              
+              
+            </ul>
+            
+            <div id="tags">
+              <h3>Tags</h3>
+              <ul>
+                
+                <li><a href="/tags/Strohm%20Native/">Strohm Native</a></li>
+                
+                <li><a href="/tags/ci/cd/">ci/cd</a></li>
+                
+                <li><a href="/tags/continuous%20delivery/">continuous delivery</a></li>
+                
+                <li><a href="/tags/continuous%20integration/">continuous integration</a></li>
+                
+                <li><a href="/tags/cross%20platform/">cross platform</a></li>
+                
+                <li><a href="/tags/git/">git</a></li>
+                
+                <li><a href="/tags/insights/">insights</a></li>
+                
+                <li><a href="/tags/metrics/">metrics</a></li>
+                
+                <li><a href="/tags/mobile/">mobile</a></li>
+                
+                <li><a href="/tags/rapid%20feedback/">rapid feedback</a></li>
+                
+                <li><a href="/tags/software%20quality/">software quality</a></li>
+                
+                <li><a href="/tags/version%20control/">version control</a></li>
+                
+                <li><a href="/tags/xp/">xp</a></li>
+                
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <footer>
+        Copyright &copy; 2020-2025 Stefan van den Oord
+        <p style="text-align: center;">
+          Powered by <a href="http://cryogenweb.org">Cryogen</a>
+        </p>
+      </footer>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    
+  </body>
+</html>

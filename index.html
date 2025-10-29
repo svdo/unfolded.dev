@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Unfolded</title>
+    
+    <meta name="description" content="Learning to become a better developer" />
+    <meta name="keywords" content="" />
+    
+    <link rel="canonical" href="https://unfolded.dev" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="//fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400italic,900italic,400,900"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/ir-black.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+    <link href="/css/screen.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-expanded="false"
+            aria-controls="navbar"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Unfolded</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li  class="active" >
+              <a href="/">Home</a>
+            </li>
+            <li >
+              <a href="/archives/">Archives</a>
+            </li>
+            
+            <li
+              
+            >
+            <a href="/pages/about/">About</a>
+            </li>
+            
+            <li><a href="/feed.xml">RSS</a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+      <!--/.container-fluid -->
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    
+    <div class="post-header">
+        <h2><a href="/posts/2021-05-08-mobile-cross-platform/">ReactNative, Flutter, Cordova, etc: the state of the art is not good enough.</a></h2>
+        <div id="post-meta">
+            
+            <div class="author">Stefan</div>
+            
+            <div class="date">May 9, 2021</div>
+        </div>
+    </div>
+    <p>There's lots of cross-platform development frameworks for writing iOS and
+Android apps. I don't like any of the existing ones too much. Some I
+passionately don't like, some are OK-ish, but none are <em>good</em>, I feel. I'm
+working on a new approach to writing cross-platform mobile apps. I want to write
+a few posts about my thinking on this topic. And remember: I'm curious to learn
+about your thoughts as well, so please <a href="https://github.com/svdo/unfolded.dev/issues/5">leave your comments</a> and let's
+learn from each other! Important note: I'm explicitly excluding games and the
+like from the scope. I'm not in that business, and in that business completely
+different reasoning applies. For lack of a better term, let's say I'm talking
+about "business apps".</p><h2 id="priorities">Priorities</h2><p>Choosing the right cross-platform development toolkit is all about priorities.
+Are you trying to make an app for Android and iOS as fast and cheap as possible,
+for example for a marketing app? Or are you going for an awesome user
+experience? Do you want the iOS and Android app to be as similar as possible, or
+do you want them to align the the particular OS that they are running in as much
+as possible? Do you think "user experience" includes performance? Matching
+users' expectations? And of course: what skills do you(r developers) have?</p><p>Let's start by laying out some of my priorities. I'll talk about both sides
+of this coin: user experience and developer experience.</p><h3 id="user-experience">User Experience</h3>
+    <a href="/posts/2021-05-08-mobile-cross-platform/">Continue reading &#8594;</a>
+    <hr>
+    
+    <div class="post-header">
+        <h2><a href="/posts/2020-10-28-simple-ci-insights-for-free/">Continuous Insights: Graphs And Metrics For Free</a></h2>
+        <div id="post-meta">
+            
+            <div class="author">Stefan</div>
+            
+            <div class="date">October 28, 2020</div>
+        </div>
+    </div>
+    <p>In my <a href="/posts/2020-08-08-continuous-integration">previous post about continuous
+integration</a> I explained that I always
+quickly setup continuous integration for any project. In that post I explained
+that it gives safety, allows for easier collaboration, and gives more confidence
+that things keep working the way they should.</p><p>In this post I'll tell you about a nice trick that I have used
+a few times to get insights from your continuous integration. There are many
+third-party services that facilitate this of course, and they do so in a much
+nicer way than I'll be describing here. But the thing is: you're not allowed to
+use most of those for commercial purposes or private repositories. And sometimes
+you just don't have the money to spend on things like this. So read on if you
+want to know how you can easily gain insights with all the tools that you
+already have, for free.</p><h2 id="the-end-result">The end result</h2><p>Let's start by showing an example of what we're going for. Below is a graph that
+shows two code coverage measurements over time. Each data point represents a
+build on the CI server. The graph is interactive and the CI server automatically
+causes the graph to be updated. After you have set everything up, there are no
+manual steps anymore.</p><p><img src="/img/coverage-graph.png" alt="Coverage Graph" /></p>
+    <a href="/posts/2020-10-28-simple-ci-insights-for-free/">Continue reading &#8594;</a>
+    <hr>
+    
+    <div class="post-header">
+        <h2><a href="/posts/2020-08-08-continuous-integration/">Continuous Integration: What It Is and Four Reasons Why I Like It</a></h2>
+        <div id="post-meta">
+            
+            <div class="author">Stefan</div>
+            
+            <div class="date">August 8, 2020</div>
+        </div>
+    </div>
+    <p><em>In my daily work, I have the good fortune to work with many very talented
+people. Some are professional software developers, like myself. Others are for
+example researchers, scientist, project leaders, and so on. Is that you? Do you
+also write software, but not as your main activity? Do you have some experience
+but maybe no formal training? In <a href="/pages/software-development-easy-to-learn-hard-to-master/">this series of blog
+posts</a> I will explain
+the best practices that I use, so that you may be able to benefit from them. So
+that writing software hopefully takes you less effort and gives you more
+pleasure.</em></p><h2 id="the-second-thing-for-new-code">The second thing for new code</h2><p>The very first thing I <em>always</em> do when starting something new, is <code>git init</code>.
+Potential new hobby project? <code>git init</code>. Sample code for a blog post? <code>git init</code>. Doing programming exercises on something like Exercism.io? <code>git init</code>.
+And then I start using git the way I described in the <a href="/posts/2020-07-21-using-git-more-effectively">first
+post</a> of this series. There are
+virtually no exceptions to this; it hardly costs me anything and it has helped
+me plenty of times.</p><p>The second thing that I do, I do just slightly less often, but still very often:
+set up <em>continuous integration</em>. Obviously I won't do that for things that I
+never push to a remote. And some things that I push to a remote don't need it
+either, for example those Exercism coding exercises. But for anything that I
+suspect may have a longer life than a few weeks, including <a href="https://github.com/svdo/either-validation-demo/actions">for that sample code
+for a blog post</a>, I'll set it up.</p><h2 id="what-is-continuous-integration">What is continuous integration</h2>
+    <a href="/posts/2020-08-08-continuous-integration/">Continue reading &#8594;</a>
+    <hr>
+    
+    <div class="post-header">
+        <h2><a href="/posts/2020-07-21-using-git-more-effectively/">Using Git as a Logbook to Improve Efficiency</a></h2>
+        <div id="post-meta">
+            
+            <div class="author">Stefan</div>
+            
+            <div class="date">July 21, 2020</div>
+        </div>
+    </div>
+    <p><em>In my daily work, I have the good fortune to work with many very talented
+people. Some are professional software developers, like myself. Others are for
+example researchers, scientist, project leaders, and so on. Is that you? Do you
+also write software, but not as your main activity? Do you have some experience
+but maybe no formal training? In <a href="/pages/software-development-easy-to-learn-hard-to-master/">this series of blog
+posts</a> I will explain
+the best practices that I use, so that you may be able to benefit from them. So
+that writing software hopefully takes you less effort and gives you more
+pleasure.</em></p><h2 id="a-creative-pursuit">A Creative Pursuit</h2><p>A decade or so ago, I had the good fortune to work with a group of extremely
+smart scientists. Without going into details, their job was to conceive
+algorithms for image processing, and improve them. They had huge volumes of
+data, and the ability to create more. The algorithms had to be robust in the
+face of all kinds of variations in that data. Much like software development,
+their work was <a href="https://iism.org/article/why-are-ceos-failing-software-engineers-56">a creative pursuit</a>.</p><p>They would have regular meetings to discuss progress, results and challenges. In
+those meetings, I remember being surprised now and then. For example, you might
+hear a conversation like this<sup id="fnref-1"><a class="footnote-ref" href="#fn-1">1</a></sup>:</p><blockquote><p><strong>Betty</strong>: Say, John, didn't you have some progress on «some algorithm
+feature» a few weeks ago? I'm running into some issues and I think your
+findings may help me here.</p><p><strong>John</strong>: Yeah, that's right, I remember having some results when I was
+working on «something else». I'm not sure which algorithm variant
+I used exactly though, or which test data for that matter. If it's important
+to you, we can sit together and see if we can reproduce that.</p></blockquote>
+    <a href="/posts/2020-07-21-using-git-more-effectively/">Continue reading &#8594;</a>
+    <hr>
+    
+
+    <div id="prev-next">
+        
+        
+    </div>
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+          <div id="sidebar">
+            
+            <div id="recent">
+              <h3>Recent Posts</h3>
+              <ul>
+                
+                <li><a href="/posts/2021-05-08-mobile-cross-platform/">Reactnative, flutter, cordova, etc: the state of the art is not good enough.</a></li>
+                
+                <li><a href="/posts/2020-10-28-simple-ci-insights-for-free/">Continuous insights: graphs and metrics for free</a></li>
+                
+                <li><a href="/posts/2020-08-08-continuous-integration/">Continuous integration: what it is and four reasons why i like it</a></li>
+                
+              </ul>
+            </div>
+            
+            <div id="series">
+                <h3>Series</h3>
+                <ul>
+                  
+                  
+                  
+                  
+                  <li><a href="/pages/software-development-easy-to-learn-hard-to-master/">Software development: easy to learn, hard to master</a></li>
+                  
+                  
+                </ul>
+            </div>
+            <h3>Links</h3>
+            <ul id="links">
+              <li>
+                <a href="https://github.com/svdo">Stefan's GitHub</a>
+              </li>
+              
+              
+              <li><a href="/pages/posts-elsewhere/">Posts elsewhere</a></li>
+              
+              
+              
+              
+            </ul>
+            
+            <div id="tags">
+              <h3>Tags</h3>
+              <ul>
+                
+                <li><a href="/tags/Strohm%20Native/">Strohm Native</a></li>
+                
+                <li><a href="/tags/ci/cd/">ci/cd</a></li>
+                
+                <li><a href="/tags/continuous%20delivery/">continuous delivery</a></li>
+                
+                <li><a href="/tags/continuous%20integration/">continuous integration</a></li>
+                
+                <li><a href="/tags/cross%20platform/">cross platform</a></li>
+                
+                <li><a href="/tags/git/">git</a></li>
+                
+                <li><a href="/tags/insights/">insights</a></li>
+                
+                <li><a href="/tags/metrics/">metrics</a></li>
+                
+                <li><a href="/tags/mobile/">mobile</a></li>
+                
+                <li><a href="/tags/rapid%20feedback/">rapid feedback</a></li>
+                
+                <li><a href="/tags/software%20quality/">software quality</a></li>
+                
+                <li><a href="/tags/version%20control/">version control</a></li>
+                
+                <li><a href="/tags/xp/">xp</a></li>
+                
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <footer>
+        Copyright &copy; 2020-2025 Stefan van den Oord
+        <p style="text-align: center;">
+          Powered by <a href="http://cryogenweb.org">Cryogen</a>
+        </p>
+      </footer>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    
+  </body>
+</html>

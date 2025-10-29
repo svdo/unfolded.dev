@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Unfolded: Continuous Integration: What It Is and Four Reasons Why I Like It</title>
+    
+<meta name="keywords" content="xp,insights,continuous integration,rapid feedback,software quality,cross platform,Strohm Native,git,mobile,version control,ci/cd,metrics,continuous delivery">
+
+<meta name="description" content="Right after creating a new project, for may of those I&#39;ll also setup continuous integration fairly quickly. In this post I&#39;ll go into what I mean with &#39;continuous integration&#39; and the reasons why I like it: having a safety net, lowering the threshold for third-party contributions, having executable documentation, and making sure that things will keep working in the future.">
+
+<meta property="og:description" content="Right after creating a new project, for may of those I&#39;ll also setup continuous integration fairly quickly. In this post I&#39;ll go into what I mean with &#39;continuous integration&#39; and the reasons why I like it: having a safety net, lowering the threshold for third-party contributions, having executable documentation, and making sure that things will keep working in the future.">
+
+<meta property="og:url" content="https://unfolded.dev/posts/2020-08-08-continuous-integration/" />
+<meta property="og:title" content="Continuous Integration: What It Is and Four Reasons Why I Like It" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://unfolded.dev/posts/2020-08-08-continuous-integration/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="//fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400italic,900italic,400,900"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/ir-black.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+    <link href="/css/screen.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-expanded="false"
+            aria-controls="navbar"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Unfolded</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li >
+              <a href="/">Home</a>
+            </li>
+            <li >
+              <a href="/archives/">Archives</a>
+            </li>
+            
+            <li
+              
+            >
+            <a href="/pages/about/">About</a>
+            </li>
+            
+            <li><a href="/feed.xml">RSS</a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+      <!--/.container-fluid -->
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">August 8, 2020</div>
+        
+        <span class="col-lg-6 right">By: Stefan</span>
+        
+    </div>
+    <h2>Continuous Integration: What It Is and Four Reasons Why I Like It</h2>
+    
+    <h3 class="subtitle">Software Development: Easy To Learn, Hard To Master</h3>
+    
+</div>
+
+<div id="post-tags">
+    
+    <span class="tag"><a href="/tags/ci/cd/">ci/cd</a></span>
+    
+    <span class="tag"><a href="/tags/continuous%20delivery/">continuous delivery</a></span>
+    
+    <span class="tag"><a href="/tags/continuous%20integration/">continuous integration</a></span>
+    
+    <span class="tag"><a href="/tags/rapid%20feedback/">rapid feedback</a></span>
+    
+    <span class="tag"><a href="/tags/software%20quality/">software quality</a></span>
+    
+</div>
+
+<div>
+    
+    <h2>Contents</h2>
+    <ol class="toc"><li><a href="#the-second-thing-for-new-code">The second thing for new code</a></li><li><a href="#what-is-continuous-integration">What is continuous integration</a></li><li><a href="#the-value-of-continuous-integration">The value of continuous integration</a></li><ol><li><a href="#safety-net--quality-baseline">Safety net / quality baseline</a></li><li><a href="#makes-it-easier-for-others-to-contribute">Makes it easier for others to contribute</a></li><li><a href="#executable-documentation-of-build--test--deployment">Executable documentation of build & test (& deployment)</a></li><li><a href="#ensure-that-code-keeps-working-in-the-future">Ensure that code keeps working in the future</a></li></ol><li><a href="#some-encouraging-words">Some encouraging words</a></li><li><a href="#comments"><a href="https://github.com/svdo/unfolded.dev/issues/3">Comments</a></a></li></ol>
+    
+    <p><em>In my daily work, I have the good fortune to work with many very talented
+people. Some are professional software developers, like myself. Others are for
+example researchers, scientist, project leaders, and so on. Is that you? Do you
+also write software, but not as your main activity? Do you have some experience
+but maybe no formal training? In <a href="/pages/software-development-easy-to-learn-hard-to-master/">this series of blog
+posts</a> I will explain
+the best practices that I use, so that you may be able to benefit from them. So
+that writing software hopefully takes you less effort and gives you more
+pleasure.</em></p><h2 id="the-second-thing-for-new-code">The second thing for new code</h2><p>The very first thing I <em>always</em> do when starting something new, is <code>git init</code>.
+Potential new hobby project? <code>git init</code>. Sample code for a blog post? <code>git init</code>. Doing programming exercises on something like Exercism.io? <code>git init</code>.
+And then I start using git the way I described in the <a href="/posts/2020-07-21-using-git-more-effectively">first
+post</a> of this series. There are
+virtually no exceptions to this; it hardly costs me anything and it has helped
+me plenty of times.</p><p>The second thing that I do, I do just slightly less often, but still very often:
+set up <em>continuous integration</em>. Obviously I won't do that for things that I
+never push to a remote. And some things that I push to a remote don't need it
+either, for example those Exercism coding exercises. But for anything that I
+suspect may have a longer life than a few weeks, including <a href="https://github.com/svdo/either-validation-demo/actions">for that sample code
+for a blog post</a>, I'll set it up.</p><h2 id="what-is-continuous-integration">What is continuous integration</h2><p>To get rid of potential confusion, let me explain what I mean with continuous
+integration, or <em>CI</em> for short. In its most basic form, it's actually quite
+simple: every single time you push something to your git remote (e.g. GitHub,
+BitBucket, GitLab, etc), an automated process will start that builds your code
+and runs all your tests. (You do have unit tests, right? Maybe a nice topic for
+a future post in this series.) That's all, if you do that you can claim you're
+doing continuous integration.</p><p>The other day, I was talking to one of my researcher colleagues about coding
+practices. When I asked him whether he was using continuous integration, he
+thankfully asked for clarification. For me the term has become so commonplace
+that I hadn't realize that of course for him it wasn't. He is working on a
+software library that his (internal) customers integrate into their product. So
+quite logically he thought that was what I meant: continuously automatically
+integrating his releases into the customer's product code. While doing that is
+of course fantastic, that's going quite a few steps further than just basic CI.
+In fact, I would say that that is the combination of <em>continuous delivery</em> (the
+<em>CD</em> in <em>CI/CD</em>) on his part, plus <em>continuous integration</em> of his delivery on
+his customer's end.</p><p>So if you have a <a href="https://docs.travis-ci.com/user/tutorial/">Travis job</a>, a <a href="https://circleci.com/docs/2.0/getting-started/#section=getting-started">CircleCI
+pipeline</a>, a <a href="https://docs.gitlab.com/ee/ci/quick_start/">GitLab
+pipeline</a>, a <a href="https://docs.github.com/en/actions/getting-started-with-github-actions">GitHub Actions
+workflow</a>, a <a href="https://confluence.atlassian.com/bamboo/getting-started-with-bamboo-289277283.html">Bamboo build</a>, anything that automatically
+build and tests your code when you push it to your remote, you're doing
+continuous integration.</p><div style="text-align: center; font-size: 3em;" title="relieved">😌</div><h2 id="the-value-of-continuous-integration">The value of continuous integration</h2><p>Ok, so now that we're hopefully on the same page regarding the term <em>continuous
+integration</em>, you may be curious why you should bother. Here's a few reasons
+that I have.</p><h3 id="safety-net--quality-baseline">Safety net / quality baseline</h3><p>I'm human. I make mistakes. There, I've said it, now you know. I have learnt
+that mistakes that escape the development process and end up at the customer,
+are way more expensive than mistakes that are caught earlier. So that's why I
+like pair programming, because your pair can catch your mistakes while your
+making them. It doesn't get any cheaper than that. That's also why I like unit
+tests, because they run many times an hour so they also catch mistakes very
+quickly. And that's also why I like continuous integration, because it catches
+even more mistakes before they escape the development process. For instance,
+when I forget to run my unit tests before pushing my code to the remote: CI will
+run and immediately notify me. And my reaction to that notification is: cool,
+thanks for catching that!</p><div style="text-align: center; font-size: 3em;" title="oops">🤭</div><h3 id="makes-it-easier-for-others-to-contribute">Makes it easier for others to contribute</h3><p>CI runs for any code that is pushed to the remote, not just by me/my team. So if
+it's source code that others can also see and use, having CI will lower the
+threshold for them to contribute. Even when you have a new team member it will
+help. They don't know the source code as well as you do, so they are a lot more
+likely to make mistakes. When I contribute code to somebody else's project, it
+feels very comforting to see "all green" as part of the automated tests in the
+pull request!</p><div style="text-align: center; font-size: 3em;" title="all is ok">✅</div><h3 id="executable-documentation-of-build--test--deployment">Executable documentation of build &amp; test (&amp; deployment)</h3><p>Just like unit tests are a form of executable code documentation, CI is a form
+of executable documentation of how your project can be built and tested. And, if
+you're doing CI/CD, deployed. And I don't think I need to explain the benefits
+of having executable documentation over plain only-human-readable documentation,
+or do I?<sup id="fnref-1"><a class="footnote-ref" href="#fn-1">1</a></sup></p><h3 id="ensure-that-code-keeps-working-in-the-future">Ensure that code keeps working in the future</h3><p>The final reason I'll mention here, is the future. Because there are two
+possible sources of problems: you as part of the development team pushing code,
+but also the environment changes. Libraries that you depend on may turn out to
+contain security issues<sup id="fnref-2"><a class="footnote-ref" href="#fn-2">2</a></sup>, or cease to exist altogether. Operating
+systems are updated, as well as libraries in there that you may directly or
+indirectly depend on. If you have a CI script that periodically runs, even when
+you don't push anything, you will know that your code not only works as
+specified when you push it, but also in the future!</p><div style="text-align: center; font-size: 3em;" title="things break">🦾</div><h2 id="some-encouraging-words">Some encouraging words</h2><p>When I'm setting up CI, which I have done countless times, it's always a
+challenge. Every single time I have to brace myself and mentally prepare for
+doing quite a few tries before getting it right. It's just such a complex black
+box! You write a script that will run on a not-quite-known configuration on a
+unknown server somewhere, and if it fails you get limited feedback. For example,
+if you want to automatically test an iOS app, you'll have to specify which
+version of the iOS simulator should be used. But before trying the build, you
+may not know which are available and what the simulator device identifiers
+are that you can use. So you have to try, look at the output, and try again. And
+then something else isn't quite right, and you try again. And again. And once
+more. Just have a look at the <a href="https://github.com/svdo/either-validation-demo/search?q=%5Bci%5D&amp;type=Commits">eighteen (18!) commits</a> I did for
+sample code for a blog post. And you can't even really clean up those commits
+because you <em>have</em> to push them to the remote. I guess if it's important to you,
+you can do them on a separate branch and squash-merge the branch when you are
+done, but I often don't bother. But bottom line: if it doesn't work immediately
+and takes a lot of attempts, it's not you. You're not losing your touch, it's
+not because you're getting older. You're fine, it's just complicated.</p><div style="text-align: center; font-size: 3em;" title="hug">🤗</div><p>And when you finally have that working CI build and it passes, go ahead and slap that badge on your readme!</p><p style="text-align: center"><img src="/img/ci-passing.png" alt="CI passing" width="90" /></p><h2 id="comments"><a href="https://github.com/svdo/unfolded.dev/issues/3">Comments</a></h2><p>Since this is a privacy-friendly static web site, I'm not including the ability
+to post comments directly here. I do love feedback though, so I created a ticket
+on GitHub that you can use to leave your comments. Tell me if it's bad, tell me
+if it's good, but please don't forget to tell me <em>why</em>. So please head over
+there and <a href="https://github.com/svdo/unfolded.dev/issues/3">leave your comments</a>!</p><div class="footnotes"><hr /><ol><li id="fn-1"><p>Please let me know if I should explain by <a href="https://github.com/svdo/unfolded.dev/issues/3">leaving a comment</a>!</p><a href="#fnref-1" class="footnote-backref">↩</a></li><li id="fn-2"><p>A <a href="https://github.com/search?q=dependabot&amp;type=Commits">quick search on GitHub</a> shows that there are currently over 6.5 million commits containing the word "dependabot", which is GitHub's automatic security-issue bot.</p><a href="#fnref-2" class="footnote-backref">↩</a></li></ol></div>
+</div>
+
+    <div id="prev-next">
+        
+        <a href="/posts/2020-10-28-simple-ci-insights-for-free/">&laquo; Continuous Insights: Graphs And Metrics For Free</a>
+        
+        
+        <a class="right" href="/posts/2020-07-21-using-git-more-effectively/">Using Git as a Logbook to Improve Efficiency &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+          <div id="sidebar">
+            
+            <div id="recent">
+              <h3>Recent Posts</h3>
+              <ul>
+                
+                <li><a href="/posts/2021-05-08-mobile-cross-platform/">Reactnative, flutter, cordova, etc: the state of the art is not good enough.</a></li>
+                
+                <li><a href="/posts/2020-10-28-simple-ci-insights-for-free/">Continuous insights: graphs and metrics for free</a></li>
+                
+                <li><a href="/posts/2020-08-08-continuous-integration/">Continuous integration: what it is and four reasons why i like it</a></li>
+                
+              </ul>
+            </div>
+            
+            <div id="series">
+                <h3>Series</h3>
+                <ul>
+                  
+                  
+                  
+                  
+                  <li><a href="/pages/software-development-easy-to-learn-hard-to-master/">Software development: easy to learn, hard to master</a></li>
+                  
+                  
+                </ul>
+            </div>
+            <h3>Links</h3>
+            <ul id="links">
+              <li>
+                <a href="https://github.com/svdo">Stefan's GitHub</a>
+              </li>
+              
+              
+              <li><a href="/pages/posts-elsewhere/">Posts elsewhere</a></li>
+              
+              
+              
+              
+            </ul>
+            
+            <div id="tags">
+              <h3>Tags</h3>
+              <ul>
+                
+                <li><a href="/tags/Strohm%20Native/">Strohm Native</a></li>
+                
+                <li><a href="/tags/ci/cd/">ci/cd</a></li>
+                
+                <li><a href="/tags/continuous%20delivery/">continuous delivery</a></li>
+                
+                <li><a href="/tags/continuous%20integration/">continuous integration</a></li>
+                
+                <li><a href="/tags/cross%20platform/">cross platform</a></li>
+                
+                <li><a href="/tags/git/">git</a></li>
+                
+                <li><a href="/tags/insights/">insights</a></li>
+                
+                <li><a href="/tags/metrics/">metrics</a></li>
+                
+                <li><a href="/tags/mobile/">mobile</a></li>
+                
+                <li><a href="/tags/rapid%20feedback/">rapid feedback</a></li>
+                
+                <li><a href="/tags/software%20quality/">software quality</a></li>
+                
+                <li><a href="/tags/version%20control/">version control</a></li>
+                
+                <li><a href="/tags/xp/">xp</a></li>
+                
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <footer>
+        Copyright &copy; 2020-2025 Stefan van den Oord
+        <p style="text-align: center;">
+          Powered by <a href="http://cryogenweb.org">Cryogen</a>
+        </p>
+      </footer>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    
+  </body>
+</html>

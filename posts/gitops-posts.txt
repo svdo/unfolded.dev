@@ -1,0 +1,64 @@
+
+## Gitops using Argo CD
+
+Gitops is facilitated by a tool that does the work for you, and we're using
+[Argo CD][argocd][^argocd] for that. Argo CD defines the concept of an
+`Application`, which groups all resources for an application: deployments,
+services, ingresses, pod disruption budgets, network policies, you name it. You
+store everything in a git repo, and after having Argo CD installed you tell it
+you want to add that application, pointing it to your git repo. Argo CD then
+checks out the repo (in the cluster, not locally) and deploys anything it finds
+in that repo. It then does two things:
+
+- It monitors whether the _actual_ state of your resources matches the _desired_
+  state, namely what was defined in the git repo. If they are different, Argo CD
+  will automatically reapply what was defined in the git repo, making manual
+  changes impossible. Which, as I explained above, is a good thing.
+- It also monitors the git repo. When it finds a new commit, it will takes that
+  as its _new desired state_ updates all resources to match that new desired
+  state.
+
+## How we are using it
+
+As soon as you're trying to use Argo CD beyond anything trivial, there's lots of
+choices and design decisions that you have to make. We did that too, and I'll
+tell you what we are using currently, after going through a few iterations.
+
+### app of apps
+
+...
+
+### kustomize/helm/jssonet
+
+...
+
+### multiple envs
+
+... no branching
+...
+
+### deploy using versions.json
+
+...
+
+## don't / ignore (?) specify replica counts
+
+...
+
+## Open issues
+
+- ... (proper continuous deployment => you don't know when _all_ apps are sync'ed)
+- ...
+
+## Lessons learned
+
+- couldn't get linkerd to work as ArgoCD application because of the way the linkerd operator uses multiple namesapces
+
+<!-- end matter -->
+
+[^argocd]: Another well-known alternative is [Flux][flux]. I'm making no claims
+    as to which is better. A few years ago we chose Argo CD and it has suited us
+    well so far. Both have pros and cons.
+
+[argocd]: https://argo-cd.readthedocs.io/
+[flux]: https://fluxcd.io
